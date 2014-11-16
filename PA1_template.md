@@ -20,7 +20,9 @@ data <- read.csv("activity.csv", header= TRUE, colClasses=c("numeric", "Date","n
 ```{r}
 library(ggplot2)
 StepsTaken <- aggregate(formula=steps ~ date, data = data, FUN = sum, na.rm=TRUE)
-ggplot(StepsTaken, aes(date, steps)) + geom_bar(stat = "identity", colour = "blue", fill = "blue", width = 0.5)+ labs(title = "Histogram: Total number of steps taken per day", x = "Date", y = "Total number of steps")
+ggplot(StepsTaken, aes(date, steps)) + geom_bar(stat = "identity", colour = "blue", 
+fill = "blue", width = 0.5)+ labs(title = "Histogram: Total number of steps taken per day", 
+x = "Date", y = "Total number of steps")
 ```
 
 ![plot1](figure/plot1.png) 
@@ -62,7 +64,9 @@ median(StepsTaken$steps)
 
 ```{r}
 AvgActivity <- aggregate(formula=steps ~ interval, data = data, FUN = mean, na.rm=TRUE)
-ggplot(AvgActivity, aes(interval, steps)) + geom_line(color = "blue", size = 0.5) + labs(title = "Time series plot: The average daily activity pattern", x = "5-minute intervals", y = "Average Number of Steps Taken")
+ggplot(AvgActivity, aes(interval, steps)) + geom_line(color = "blue", size = 0.5) 
++ labs(title = "Time series plot: The average daily activity pattern", 
+x = "5-minute intervals", y = "Average Number of Steps Taken")
 ```
 
 ![plot2](figure/plot2.png) 
@@ -115,8 +119,8 @@ sum(is.na(NoNAData))
 
 ```{r}
 AvgActivity2 <- aggregate(formula=steps ~ interval, data =  NoNAData, FUN = sum, na.rm=TRUE)
-ggplot(AvgActivity2, aes(interval, steps)) + geom_line(colour = "blue", 
-size = 0.5) + labs(title = "Time series plot: The average daily activity pattern (without NA value)",
+ggplot(AvgActivity2, aes(interval, steps)) + geom_line(colour = "blue", size = 0.5) 
++ labs(title = "Time series plot: The average daily activity pattern (without NA value)",
 x = "5-minute intervals", y = "Average Number of Steps Taken")
 ```
 
@@ -164,7 +168,8 @@ head(newData)
 ```{r}
 newData2 <- aggregate(newData$steps, list(newData$day_type, newData$interval), mean)
 names(newData2) <- c("day_type", "interval","steps")
-qplot(interval, steps, data=newData2, color=day_type, geom="line") + ggtitle("differences in activity patterns between weekdays and weekends")
+qplot(interval, steps, data=newData2, color=day_type, geom="line") 
++ ggtitle("differences in activity patterns between weekdays and weekends")
 ```
 
 ![plot4](figure/plot4.png) 
